@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>家庭旅游门户</title>
+</head>
+<body>
+<div>
+    <h4>来自<span th:text="${project}"></span>发来的邀请函</h4>
+    <em><span th:text="${owerName}"></span></em>邀您加入<b><span th:text="${familyName}"></span>大家庭!</b>请先在<span th:text="${project}"></span><a th:href="@{${baseurl}+'/goLogin'}" th:text="登录"></a>,我们期待您的加入<a th:href="@{${baseurl}+'/inviteUserAdd?familyId='+${familyId}}" th:text="点击同意加入"></a>
+
+    <p>-By&nbsp;&nbsp;<span th:text=" ${author}"></span></p>
+    <p>Best Regards</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>用户信息修改--layui后台管理模板</title>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<style type="text/css">
+		.layui-form-item .layui-inline{ width:33.333%; float:left; margin-right:0; }
+		@media(max-width:1240px){
+			.layui-form-item .layui-inline{ width:100%; float:none; }
+		}
+	</style>
+</head>
+<body class="childrenBody">
+<form class="layui-form"  action="/manager/familyMemberSave" method="post">
+	<!--<input th:value="${entity?.id}" id="id" name="id" type="hidden"/>-->
+	<input th:value="${familyId}" id="familyId" name="familyId" type="hidden"/>
+	<div class="layui-form-item">
+		<label class="layui-form-label">家庭成员</label>
+		<div class="layui-input-inline">
+			<select id="memberId" name="memberId" class="newsLook" lay-filter="browseLook">
+				<option value="">请选择</option>
+				<option th:each="member : ${members}" th:value="${member.id}" th:text="${member.userName+':'+member.name}">
+				</option>
+			</select>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button class="layui-btn" type="submit" lay-submit="">保存</button>
+			<a class="layui-btn" th:href="@{/manager/familyMemberList(familyId=${familyId})}">返回</a>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			<span th:text="${message}"></span>
+		</div>
+	</div>
+</form>
+	<script type="text/javascript" src="/../layui/layui.js"></script>
+	<script type="text/javascript" src="/../js/family/addMember.js"></script>
+</body>
+</html>

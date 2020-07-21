@@ -1,0 +1,83 @@
+﻿# Server settings
+server:
+#    port: 8888
+    port: 80
+    address: 0.0.0.0
+# SPRING PROFILES
+spring:
+    #如果上传目录为/static/images/upload/，则可以如下获取：
+    # File upload = new File(path.getAbsolutePath(),"static/images/upload/");
+    # if(!upload.exists()) upload.mkdirs();
+    # upload.getAbsolutePath()
+    #在开发测试模式时，得到的地址为：{项目跟目录}/target/static/images/upload/
+    #在打包成jar正式发布时，得到的地址为：{发布jar包目录}/static/images/upload/
+    resources:
+        static-locations: classpath:static/,file:static/
+    devtools:
+        restart:
+            enabled: true
+            exclude: templates/**
+    thymeleaf:
+        prefix:
+            classpath: /templates/
+        mode: LEGACYHTML5
+        suffix: .html
+        encoding: UTF-8
+        content-type: text/html
+        cache: false
+    datasource:
+            driverClass: com.mysql.jdbc.Driver
+            url: jdbc:mysql://127.0.0.1:3306/travel?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+            username: root
+            password: 1234
+    mail:
+        # 163
+        host: smtp.163.com
+        port: 465
+        username: desire_belief@163.com
+        password: my523387test
+        protocol: smtp
+        default-encoding: UTF-8
+        #邮件内容链接
+        #baseurl: http://localhost:8888
+#        baseurl: http://192.168.79.128:8888
+        baseurl: http://121.37.152.167:80
+        properties:
+            mail.smtp.auth: true
+            mail.smtp.starttls.enable: true
+            mail.smtp.starttls.required: true
+            mail.smtp.socketFactory.port: 465
+            mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+            mail.smtp.ssl.trust: smtp.163.com
+            mail.smtp.socketFactory.fallback: false
+        form:
+            mail: desire_belief@163.com #发送方，必须为你设置的username一致
+            name: 家庭旅游门户 #发送方显示的名称，可以随意设置
+            charset: UTF-8 #编码格式，一般设置为UTF-8
+mybatis:
+    configuration:
+            mapUnderscoreToCamelCase: true
+pagehelper:
+    helperDialect: mysql
+    #RowBounds第一个参数offset当做页码，默认为false
+    offsetAsPageNum: true
+    #使用RowBounds分页会进行count查询，默认为false
+    rowBoundsWithCount: true
+    #启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+    reasonable: false
+    #支持通过Mapper接口参数来传递分页参数
+    supportMethodsArguments: true
+    #设置为true时，如果pageSize=0遍历全部结果，相当于没有分页
+    pageSizeZero: true
+    #映射参数
+    params: count=countSql
+logging:
+    level:
+      #打印SQL信息
+      #com.hehe.mapper: debug
+      com.cn.travel: debug
+#swagger
+springfox:
+    documentation:
+        swagger:
+            v2.path: /api-docs
