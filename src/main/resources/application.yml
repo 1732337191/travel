@@ -9,8 +9,8 @@ spring:
     # File upload = new File(path.getAbsolutePath(),"static/images/upload/");
     # if(!upload.exists()) upload.mkdirs();
     # upload.getAbsolutePath()
-    #在开发测试模式时，得到的地址为：{项目跟目录}/target/static/images/upload/
-    #在打包成jar正式发布时，得到的地址为：{发布jar包目录}/static/images/upload/
+    #在开发测试模式时，得到的地址为：{项目根目录}/target/static/images/upload/
+    #在打包成jar正式发布时，得到的地址为：{与发布的jar包同级目录}/static/images/upload/
     resources:
         static-locations: classpath:static/,file:static/
     devtools:
